@@ -1,0 +1,10 @@
+pandas
+numpy
+wget
+pdf2image
+opencv-python
+flask
+pytesseract
+joblib
+scikit-learn
+imutils
