@@ -1,4 +1,34 @@
-# Guia de Engenharia de Prompt
+# OCR com Pytesseract e Llama3
+
+Esse repositório contêm uma API para extração de campos de um documento com a simples ideia de captação do texto de um documento com o Tesseract e a extração dos campos/informações utilizando o Llama3 como ferramente de NLP.
+
+#### Vantagens: 
+- Implementação simples: precisamos simplesmente de duas ferramentas, o Tesseract e o Llama3 (pode ser substituido pelo GPT-4o, GPT-4, GPT-3.5-turbo da OpenAI com a chave de API).
+- Extração via prompt: Não há necessidade de manipularmos strings com expressões regulares ou criar lógicas complexas. A LLM através do prompt fornecido usando linguagem natural já fará isso por nós.
+
+#### Desvantagens:
+- Um pouco de imprevisibilidade: dependendo do tipo de LLM usada a chances do retorno não ser exatamente o que é esperado.
+- Alto poder computacional esperado: para rodar a LLM localmente é necessário ao menos 16gb de RAM ou uma GPU. Mas esses requisitos mínimos tem dificuldade de processar e podem levar em média 2 minutos para responder a requisição. Para um bom desempenho, ao menos 32gb de RAM e uma GPU com mais de 4gb de RAM.
+
+## Rodando o projeto:
+
+Para rodar o projeto é necessário ter o Docker instalado. Todas as bibliotecas e dependências serão instaladas via Docker.
+
+1. No diretório do projeto digite: `docker build -t ocrapi .`
+2. Após o build: `docker run -dp 5001:5001 --name ocrapi ocrapi`
+
+O comando o argumento `-dp 50001:5001` roda o container no modo detached e binda a porta 5001 para que fique disponível para requisição externa.
+
+Com o container rodando, é possível fazer uma requisição para a API passando a URL como argumento do body json e o prompt como segundo argumento. Exemplo:
+
+```
+{
+    "url": "https://www.google.com/url?sa=i&url=https%3A%2F%2Fmanuais.ifsp.edu.br%2Fbooks%2Fcgi-documentos-eletronicos-suap%2Fpage%2F9-vinculando-documentos&psig=AOvVaw2ue09NuhvtNjPm2JkphtT-&ust=1720449963858000&source=images&cd=vfe&opi=89978449&ved=0CBEQjRxqFwoTCMiU09mVlYcDFQAAAAAdAAAAABAE",
+    "prompt": "você é um assistente que analisa documentos. Dado o texto do documento, extraia o qualquer nome que exista no documento e devolva no formato json."
+}
+```
+
+# Guia de Engenharia de Prompt (by João Levi Gomes de Lima)
 
 ## Introdução
 
