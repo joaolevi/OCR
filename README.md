@@ -1,4 +1,4 @@
-# OCR com Pytesseract e Llama3
+# API de OCR com Pytesseract e Llama3 utilizando LlamaIndex
 
 Esse repositório contêm uma API para extração de campos de um documento com a simples ideia de captação do texto de um documento com o Tesseract e a extração dos campos/informações utilizando o Llama3 como ferramente de NLP.
 
